@@ -1,0 +1,68 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+      .signup{
+        display: flex;
+        font-family: 'Roboto', sans-serif;
+    }
+    .p_p{
+        padding: 20px 40px 20px 40px;
+        margin-top:30px;
+        margin-right: 35px;
+        margin-bottom:50px;
+    }
+    .btn-signup{
+        background-color: #fe424d;
+        color:#ffffff;
+    }
+    .btn-signup:hover{
+        background-color: #fe424d;
+        color:#ffffff;
+    }
+</style>
+    <div class="row">
+
+        <div class="signup">
+
+          <div class="col-6 offset-1 shadow p_p">
+
+            <h4 class="col-6">Signup on Wanderlust</h4><br />
+
+            <form action="/signup" class="needs-validation" method="POST" novalidate>
+
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                   <input  name="username" id="username" type="text"  required class="form-control" />
+                   <div class="valid-feedback">looks good !</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                   <input  name="email" id="email" type="email"  required class="form-control" />
+               </div>
+
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone Number</label>
+                   <input  name="phone" id="phone" type="number"  required class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                   <input  name="password" id="password" type="password"  required class="form-control" />
+                </div>
+
+                <button class="btn btn-signup">Sign up</button>
+
+            </form>
+
+            </div>
+
+            <div>
+                <img src="https://png.pngtree.com/png-vector/20200610/ourlarge/pngtree-search-real-estate-or-home-flat-design-png-image_2222177.jpg" alt="img" height="420px" width="440px"/>
+            </div>
+
+        </div>
+        </div>
+
+        
+

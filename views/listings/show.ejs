@@ -1,0 +1,143 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+  .show_1 h4{
+    font-family: 'Roboto', sans-serif;
+  }
+  .owner{
+    background-color:lightblue;
+    width:100%;
+    padding:30px 20px 40px 30px;
+
+  }
+  .owner h5{
+    color:rgb(4, 4, 112);
+  }
+
+  
+
+</style>
+    <div class="row col-10 offset-1 mt-4 shadow-lg" style="border:2px solid white;border-radius:20px;">
+        <div class="col-12 offset-1 show_1 mt-5">
+            <h5> <b><%= listing.title %></b></h5><br>
+        </div>
+
+        <div class="card col-9 offset-1 show-card listing-card" >
+            <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="Listing_image">
+            <div class="card-body"><br />
+              <p class="card-text"> <b>Owned by: </b><%= listing.owner.username %><br /></p>
+
+               <p><b>Description: </b> <%= listing.description %><br></p>
+               <p><b> Cost Price:&#8377; </b><%= listing.price.toLocaleString("en-IN") %>
+                 <% if( listing.property == "Rent" ){ %> per month <% } %><br></p> 
+               <p><b>Property for:</b> <%= listing.property %><br></p>
+               <p><b>Property Type:</b> <%= listing.housingtype %><br></p>
+
+                <p><b>City:</b> <%= listing.location %><br></p>
+               <p><b>Country:</b> <%= listing.country %><br></p> 
+            </div>
+          </div>
+
+          <% if(currUser && listing.owner._id.equals(currUser._id)){ %>
+          <div class="btns">
+            <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark col-1 offset-1 edit-btn">Edit</a>
+
+            <form  method="post" action="/listings/<%= listing._id%>?_method=DELETE ">
+                  <button class="btn btn-dark offset-5">Delete</button>
+           </form>
+
+        </div>
+
+        <% } %>
+
+
+        <div class="owner text-light mt-5 offset-1" style="width:700px;border:0.5rem;border-radius:10px">
+
+          <h5>Owner Details</h5>
+
+
+          <p>Name: <%= listing.owner.username %><br>owner</p>
+
+          <button class="btn btn-danger" id="phone" ><i class="fa-solid fa-phone fa-shake"></i>  &nbsp;&nbsp;&nbsp;View Phone Number</button><br><br>
+
+          <p style="display:none" id="phoneno">Owner's contact number : <%= listing.owner.phone %></p>
+
+          <p>Owner's Email: <%=listing.owner.email %></p>
+
+        </div>
+        
+        <div class="col-8 offset-1"><br>
+  
+          <hr>
+          <% if(currUser){ %>
+
+
+          <h4>Leave a Review</h4>
+
+          <form class="mb-3 needs-validation" action="/listings/<%= listing.id %>/reviews" method="post" novalidate>
+
+            <div class="mb-3 mt-3">
+                <label for="rating" class="form-label">Rating</label>
+
+            <fieldset class="starability-slot">
+              <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]"  value="1" checked aria-label="No rating." />
+              <input type="radio" id="first-rate1" name="review[rating]"  value="1" />
+              <label for="first-rate1" title="Terrible">1 star</label>
+              <input type="radio" id="first-rate2" name="review[rating]"  value="2" />
+              <label for="first-rate2" title="Not good">2 stars</label>
+              <input type="radio" id="first-rate3" name="review[rating]"  value="3" />
+              <label for="first-rate3" title="Average">3 stars</label>
+              <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+              <label for="first-rate4" title="Very good">4 stars</label>
+              <!-- <input type="radio" id="first-rate5" name="review[rating]"  value="5" />
+              <label for="first-rate5" title="Amazing">5 stars</label> -->
+            </fieldset>
+     </div>
+     
+            <div class="mb-3 mt-3">
+              <label for="comment" class="form-label">Comments</label>
+              <textarea name="review[comment]" id="comment" cols="30" rows="5" class="form-control" required></textarea>
+              <div class="invalid-feedback">Please add some comments for review !</div>
+            </div>
+            <button type="submit" class="btn btn-outline-dark">Submit</button>
+          </form>
+
+         <% } %>
+    
+         <% if(listing.review.length > 0 ) { %>
+         <div class="row">
+          <p> <b>All Reviews</b></p>
+          <hr><br>
+         <% for(review of listing.review){ %>
+          <div class="card col-5 mb-3 ms-3 pr-5 bg-danger bg-opacity-83 text-light">
+            <div class="card-body pt-3 pl-5">
+              <h5 class="card-title fs-6">@ <%= review.author.username %></h5>
+              <p class="starability-result card-text" data-rating="<%= review.rating %>" ></p>
+              <p class="card-text"><i class="fa-solid fa-quote-left fa-2xs"></i>&nbsp;<%= review.comment %>&nbsp;<i class="fa-solid fa-quote-right fa-2xs"></i></p>
+           </div>
+
+           <form class="mb-3" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST" >
+            <button class="btn btn-sm btn-dark mt-2">Delete</button>
+           </form>
+        </div>
+        <% } %>
+        </div>
+        <% } %>
+        <br>
+    </div>
+    </div><br><br>
+
+    <script>
+
+
+      let phone = document.getElementById("phone");
+      let phoneno =  document.getElementById("phoneno");
+      phone.addEventListener("click",()=>{
+         phoneno.style.display="inline";
+      })
+
+    </script>
+
+    
+
+ 

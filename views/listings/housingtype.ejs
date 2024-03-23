@@ -1,0 +1,28 @@
+<% layout("/layouts/boilerplate") %>
+
+
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+
+
+    <% for (let listing of housingtype1){ %>
+      <a href="/listings/<%= listing._id %>" class="listing-link">
+    <div class="card col listing-card">
+      <i class="fa-regular fa-heart fa-lg" style="color:#ffffff;;position: absolute;z-index: 4;top:7%;left:90%;" id="heart" ></i>
+     <img src="<%=listing.image.url%>" class="card-img-top" alt="listing_img" style="height: 20rem;position: relative;z-index: 1;">
+        <div class="card-img-overlay">Welcome</div>
+        <div class="card-body">
+          <p class="card-text">
+           <b> <%= listing.title %></b>
+           <br />
+            &#8377;<%= listing.price %>/month
+            <i class="tax-info"> &nbsp;+18% GST</i><br/>
+            <b><%= listing.housingtype %></b>&nbsp;for <b><%= listing.property %></b>
+          </p>
+        </div>
+      </div>
+  </a>
+<% } %>
+
+
+
+</div><br><br>

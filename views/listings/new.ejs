@@ -1,0 +1,132 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+.p_p{
+        display: flex;
+    }
+
+.div_1{
+    padding-left:80px;
+    padding-right: 80px;
+    justify-content: center;
+    background-color:gainsboro;
+}
+.div_1 h6{
+    margin-top:240px;
+   color:#fe424d;
+   text-align: center;
+   font-size:larger;
+}
+.div_2{
+    padding-left:40px;
+    padding-right:100px;
+    background-color: aliceblue;
+}
+
+
+.div_4 h4{
+    font-family: 'Roboto', sans-serif;
+
+}
+</style>
+    <div class="row">
+
+        <div class="p_p  mb-5 mt-5 justify-content-center">
+
+        <div class="div_1">
+            <h6><i class="fa-brands fa-airbnb fa-beat fa-lg text-danger"></i>&nbsp;&nbsp;Airbnb</h6>
+            <h4>Upload your <br> <p class="text-center mt-2">Property</p></h4>
+        </div>
+
+        <div class="col-8 div_2">
+
+    <form method="post" action="/listings" novalidate class="needs-validation" enctype="multipart/form-data">
+
+        <h4 class="mt-4">Upload  Property</h4><br />
+
+        <div class="mb-3">
+            <label for="title" class="form-label">Enter Title</label>
+           <input  name="listing[title]" type="text"  placeholder="Add a Catchy Title" required class="form-control" />
+           <div class="valid-feedback">Title looks good !</div>
+        </div>
+        <br />
+        
+        <div class="mb-3">
+            <label  for="description" class="form-label">Enter Description</label>
+           <textarea  name="listing[description]" type="text" placeholder="Enter description" class="form-control" required></textarea>
+           <div class="invalid-feedback">Please enter a short description</div>
+        </div>
+        <br /> 
+
+        <div class="mb-3">
+            <label for="image" class="form-label">Upload Image</label>
+            <input  name="listing[image]" type="file" class="form-control" required/>
+        </div>
+        <br /> 
+
+        <div class="mb-3">
+            <label for="image" class="form-label">Property for</label>
+            <select id=""  class="form-select" name="listing[type]" aria-label="Default select example" class="form-control" required>
+                <option disabled>Rent</option>
+                <option value="Rent">Rent</option>
+                <option value="Sell">Sell</option>
+              </select> 
+        </div>
+        <br /> 
+
+        <div class="mb-3">
+            <label for="image" class="form-label">Property Housing Type</label>
+            <select id=""  class="form-select" name="listing[housingtype]" aria-label="Default select example" class="form-control" required>
+                <option disabled>Independent House</option>
+                <option value="Independent House">Independent House</option>
+                <option value="Villa">Villa</option>
+                <option value="land">land</option>
+                <option value="Apartment">Apartment</option>
+                <option value="Hotel">Hotel</option>
+                <option value="Bungalow">Bungalow</option>
+                <option value="Farmhouse">Farmhouse</option>
+                <option value="Industrial">Industrial</option>
+                <option value="Commercial">Commercial</option>
+
+              </select> 
+        </div>
+        <br /> 
+
+        <div class="row">
+   
+         <div class="mb-3 col-md-4">
+            <label for="price" class="form-label">Enter Price</label>
+            <input  name="listing[price]"  placeholder="1200" type="'number" class="form-control" required/>
+            <div class="invalid-feedback">Price should be valid</div>
+         </div>
+            <br /> 
+
+
+         <div class="mb-3 col-md-8">
+            <label for="country" class="form-label">Enter Country</label>
+           <input  name="listing[country]" type="text" placeholder="India"  class="form-control" required/>
+           <div class="invalid-feedback">Country should be valid</div>
+         </div>
+          <br /> 
+
+          </div>
+
+          <div class="mb-3">
+            <label for="location" class="form-label">Enter City</label>
+            <input  name="listing[location]" type="text"  placeholder="Jaipur" class="form-control" required/>  
+            <div class="invalid-feedback">Location should be valid</div>
+  
+          </div>
+        <br /> 
+
+        <button class="btn add-btn">Add</button><br>
+        <br><br><br>
+    </form>
+</div>
+
+</div>
+
+</div>
+
+
+

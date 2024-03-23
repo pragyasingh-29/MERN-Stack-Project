@@ -1,0 +1,363 @@
+<% layout("/layouts/boilerplate") %>
+ 
+<style>
+  *{
+    padding:0;
+    margin:0;
+  }
+  h2{
+    color:#010d3e;
+    font-family: 'Roboto', sans-serif;
+    font-size:xx-large;
+  }
+  h5{
+    font-family: 'Roboto', sans-serif;
+  }
+    #filters{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+ }
+ .filter{
+  text-align:center;
+  margin-right:2rem;
+  margin-top:2rem;
+  opacity: 0.8;
+ }
+
+ .filter:hover{
+  opacity: 1;
+  cursor: pointer;
+ }
+
+ .filter p{
+  font-size: 0.8rem;
+ }
+
+ .tax-info{
+  display: none;
+ }
+
+ .tax-toggle{
+  border:1px solid black;
+  border-radius: 0.75rem;
+  height:2.75rem;
+  padding:1rem;
+  margin-left:1rem;
+  display:flex;
+  align-items: center;
+  margin-top:1rem;
+ }
+
+ .tax-toggle label{
+  font-size: small;
+ }
+
+ .image img{
+  
+   transform:scale(1.5);
+   transform-origin: 40% 20%;
+ }
+
+ .image{
+  overflow:hidden;
+  display:inline-grid;
+  border:0.1rem !important;
+  border-radius:15px;
+ }
+
+.listing-card-info{
+   background-color:lightblue;
+   margin-right:25px;
+   padding:30px 20px 10px 20px;
+ }
+
+.type{
+  text-decoration: none ;
+  color:black;
+}
+
+
+.img-hover-zoom a img{
+   transition: transform 0.5s ease;
+}
+
+.img-hover-zoom img:hover{
+  transform:scale(1.06);
+}
+</style>
+
+<div id="filters">
+  <!-- <div class="filter">
+
+  <a href="" class="type"><div><i class="fa-solid fa-fire"></i></div><p>Trending</p> </a>
+  
+  </div> -->
+
+  <div class="filter">
+    <a href="/listings/housingtype/Land" class="type"><div><i class="fa-solid fa-water"></i></div> <p>Land</p></a>
+  </div>
+
+  <div class="filter">
+    <a href="/listings/housingtype/Independent House" class="type"><div><i class="fa-solid fa-house"></i></div><p>House</p></a> 
+   </div>
+
+   <div class="filter">
+    <a href="/listings/housingtype/Villa" class="type"> <div><i class="fa-solid fa-mountain"></i></div><p>Villa</p> </a>
+   </div>
+
+   <div class="filter">
+    <a href="/listings/housingtype/Apartment" class="type">  <div><i class="fa-brands fa-fort-awesome"></i></div><p>Apartment</p></a> 
+   </div>
+
+   <div class="filter">
+    <a href="/listings/housingtype/Hotel" class="type">  <div><i class="fa-solid fa-hotel"></i></div><p>Hotel</p> </a>
+   </div>
+
+   <div class="filter">
+    <a href="/listings/housingtype/Bungalow" class="type"> <div><i class="fa-solid fa-campground"></i></div><p>Bungalow</p> </a>
+   </div>
+
+   <div class="filter">
+    <a href="/listings/housingtype/Farmhouse" class="type"><div><i class="fa-solid fa-cow"></i></div><p>Farmhouse</p></a> 
+   </div>
+
+   <div class="filter">
+    <a href="/listings/housingtype/Industrial" class="type"><div><i class="fa-solid fa-industry"></i></i></div><p>Industrial</p> </a>
+   </div>
+   
+   <div class="filter">
+    <a href="/listings/housingtype/Commercial" class="type"><div><i class="fa-solid fa-igloo"></i></div><p>Commercial</p> </a>
+   </div>
+
+   
+
+   <div class="tax-toggle">
+   <div class="form-check-reverse form-switch">
+    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+    <label class="form-check-label" for="flexSwitchCheckDefault" >Display total after Taxes</label>
+  </div>
+</div>
+
+
+</div>
+
+
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+
+
+    <% for (let listing of allListings){ %>
+      <a href="/listings/<%= listing._id %>" class="listing-link">
+    <div class="card col listing-card">
+      <i class="fa-regular fa-heart fa-lg" style="color:#ffffff;;position: absolute;z-index: 4;top:7%;left:90%;" id="heart" ></i>
+     <img src="<%=listing.image.url%>" class="card-img-top" alt="listing_img" style="height: 20rem;position: relative;z-index: 1;"><br>
+        <div class="card-img-overlay">Welcome</div>
+        <div class="card-body ml-5">
+          <p class="card-text">
+           <b> <%= listing.title %></b>
+           <br />
+           &#8377;<%= listing.price.toLocaleString("en-IN") %><i class="tax-info"> &nbsp;+18% GST</i>
+           <% if( listing.property == "Rent" ){ %> per month <% } %><br> 
+
+           <b><%= listing.housingtype %></b>&nbsp;for <b><%= listing.property %></b>
+
+          </p>
+        </div>
+      </div>
+  </a>
+<% } %>
+
+
+</div><br>
+
+<hr><br>
+
+<p class="text-center text-secondary">ALL PROPERTY NEEDS - ONE PORTAL</p>
+
+<h2 class="text-center mb-5">Find Better places to live, work <br> wonder</h2>
+
+<div class="d-flex">
+
+  <div class="image offset-1">
+    <img src="https://images.unsplash.com/photo-1601002257790-ebe0966a85ae?q=80&w=1776&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" height="350px" width="500px" alt="img" />
+  </div>
+
+  <div style="margin-left:60px;">
+
+    <p class=" text-secondary fs-6">BUY A HOME</p>
+    <h5>Find Buy and Own your <br>  Dream House</h5>
+    <p class="fs-6 mt-4">Explore from Apartments, land, builder floors,<br>villas and more.</p>
+
+    <form action="" method="get">
+
+      <button class="btn btn-danger mt-5">Explore Buying</button>
+
+    </form>
+
+  </div>
+</div>
+<br>
+
+<hr><br>
+
+<!---Next -->
+<p class="offset-1 text-secondary fs-6">TOP CITIES</p>
+
+<h2 class="offset-1 mb-5">Explore Real Estate in Popular Indian Cities</h2>
+
+<div class="row row-cols-lg-5 row-cols-md-3 row-cols-sm-2 mt-3">
+
+
+ 
+  <div class="card col img-hover-zoom listing-card offset-2 ">
+  
+
+    <a href="listings/search/Delhi">  <img src="https://www.holidify.com/images/cmsuploads/compressed/5621259188_e74b389db5_k_20200414113725.jpg" class="card-img-top-cities" alt="listing_img" ></a><br>
+
+      <p><b>Delhi</b><br>45,000 + properties
+      </p>
+   
+   
+    </div>
+
+    <div class="card col listing-card img-hover-zoom">
+  
+
+    <a href="listings/search/Bangalore">   <img src="https://www.fabhotels.com/blog/wp-content/uploads/2018/10/1000x650-235.jpg" class="card-img-top-cities" alt="listing_img"></a><br>
+   
+      <p><b>Bangalore</b><br>40,000 + properties
+      </p>
+   
+    </div>
+
+    <div class="card col listing-card img-hover-zoom ">
+  
+      <a href="listings/search/Pune">  <img src="https://yometro.com/images/places/aga-khan-palace.jpg" class="card-img-top-cities" alt="listing_img" ></a><br>
+   
+      <p><b>Pune</b><br>30,000 + properties
+      </p>
+   
+    </div>
+
+    <div class="card col listing-card img-hover-zoom">
+  
+      <a href="listings/search/Mumbai"> <img src="https://www.fabhotels.com/blog/wp-content/uploads/2018/07/1000x650-126.jpg" class="card-img-top-cities" alt="listing_img" ></a><br>
+   
+      <p><b>Mumbai</b><br>15,000 + properties
+      </p>
+   
+    </div>
+
+    <div class="card col listing-card offset-2 img-hover-zoom">
+  
+      <a href="listings/search/Hyderabad">  <img src="https://www.transindiatravels.com/wp-content/uploads/charminar-1.jpg" class="card-img-top-cities" alt="listing_img"></a> <br>
+   
+      <p><b>Hyderabad</b><br>55,000 + properties
+      </p>
+   
+    </div>
+
+    <div class="card col listing-card img-hover-zoom ">
+  
+      <a href="listings/search/Kolkata"> <img src="https://psgroup.in/blog/wp-content/uploads/2022/11/famous-places-in-kolkata-scaled.jpg" class="card-img-top-cities" alt="listing_img"></a><br>
+   
+      <p><b>Kolkata</b><br>45,000 + properties
+      </p>
+   
+    </div>
+
+
+</div>
+
+
+</div>
+
+
+<hr>
+<br>
+
+
+<!---next----->
+
+  <p class="text-center text-secondary fs-6">ARE YOU AN OWNER ?</p>
+
+<h2 class="text-center mb-5">Sell or Rent your property faster <br> with AirBnb</h2>
+
+<div class="d-flex">
+
+  <div class="image offset-1">
+    <img src="https://plus.unsplash.com/premium_photo-1661424126027-4ae0cbbf96c9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" height="350px" width="500px" alt="img" />
+  </div>
+
+  <div class="" style="margin-left:60px;">
+
+    <p class=" text-secondary fs-6">POST YOUR PROPERTY</p>
+    <h5 class="mt-4">Register to post your <br> property for <b class="text-danger">Free</b></h5>
+    <p class="mt-4"> Sell or rent your residential/ commercial <br> property</p>
+
+    <form action="/listings/new" method="get">
+
+      <button class="btn btn-danger mt-5">Post your property for free</button>
+
+    </form>
+
+  </div>
+</div>
+<br>
+
+<hr>
+
+<!---Next -->
+<p class="offset-1 text-secondary fs-6 mt-4">  BENEFITS OF AIRBNB</p>
+
+<h2 class="offset-1 mb-5">Why Choose AirBnb? </h2>
+
+<div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 mt-3 offset-2">
+
+  <div class="card col listing-card  listing-card-info">
+  
+    <i class="fa-solid fa-building fa-fade fa-lg" style="color: #0033ff;"></i><br>
+ 
+    <p class="text-info"> 01. Over 12 lakh&nbsp  Properties</p><p class="text-light">10,000+ properties are added everyday</p>
+
+ 
+
+  </div>
+
+  <div class="card col listing-card listing-card-info text-light">
+  
+    <i class="fa-solid fa-building-circle-check fa-fade fa-lg" style="color: #005eff;"></i><br> 
+    <p class="text-info">02. Verification by AirBnb team</p><p class="text-light">Photos / Videos and other details are verified on location</p>
+ 
+
+  </div>
+
+  <div class="card col listing-card listing-card-info text-light">
+  
+    <i class="fa-solid fa-users fa-fade fa-lg" style="color: #005eff;"></i><br>
+ 
+    <p class="text-info"> 03. Large user base </p><p class="text-light">High active user count and user engagement to find and close deals</p>
+
+ 
+
+  </div>
+
+
+</div>
+
+<script>
+  let taxSwitch = document.getElementById("flexSwitchCheckDefault");
+  taxSwitch.addEventListener("click",()=>{
+    let taxInfo = document.getElementsByClassName("tax-info");
+    console.log("Taxinfo is",taxInfo);
+    for(info of taxInfo){
+      if(info.style.display != "inline"){
+        info.style.display="inline";
+      }else{
+        info.style.display="none";
+      }
+    }
+  })
+
+
+</script>
